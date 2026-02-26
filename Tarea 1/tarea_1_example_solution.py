@@ -3,11 +3,11 @@ def filtrar_vocales(cadena, bandera):
     # Se definen los códigos de error únicos solicitados del inciso a-e
 
     no_error = 0
-    error_string = 1
-    error_abecedario = 2
-    error_vacio = 3
-    error_longitud = 4
-    error_bandera = 5
+    error_string = -100
+    error_abecedario = -200
+    error_vacio = -300
+    error_longitud = -400
+    error_bandera = -500
 
     # Verificación de errores
 
@@ -50,10 +50,10 @@ def encontrar_extremos(lista_numeros):
     # Se definen los códigos de error únicos solicitados del inciso a-e
 
     no_error = 0
-    error_lista = 1
-    error_numeros = 2
-    error_vacio = 3
-    error_longitud = 4
+    error_lista = -600
+    error_numeros = -700
+    error_vacio = -800
+    error_longitud = -900
 
     # Verificación de errores
 
