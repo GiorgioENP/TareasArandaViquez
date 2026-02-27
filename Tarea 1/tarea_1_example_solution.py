@@ -1,81 +1,62 @@
+
+
+# Codigos de error solicitados en el enunciado
+CODIGO_EXITO = 0
+ERROR_NO_STRING = -100
+ERROR_NO_SOLO_LETRAS = -200
+ERROR_STRING_VACIO = -300
+ERROR_STRING_LARGO = -400
+ERROR_NO_BOOLEANO = -500
+ERROR_NO_LISTA = -600
+ERROR_ELEMENTOS_NO_NUMERICOS = -700
+ERROR_LISTA_VACIA = -800
+ERROR_LISTA_LARGA = -900
+
+
+# Funcion para filtrar vocales
 def filtrar_vocales(cadena, bandera):
-
-    # Se definen los códigos de error únicos solicitados del inciso a-e
-
-    no_error = 0
-    error_string = -100
-    error_abecedario = -200
-    error_vacio = -300
-    error_longitud = -400
-    error_bandera = -500
-
-    # Verificación de errores
-
-    # a) Verifica que el tipo de dato de cadena sea string
+    # Error en caso de que el parámetro no sea un string
     if not isinstance(cadena, str):
-        return error_string, None
-
-    # b) Verifica que la cadena solo contenga letras del abecedario
+        return ERROR_NO_STRING, None
+    # Error en caso de que el parámetro sea un string vacio
+    if cadena == "":
+        return ERROR_STRING_VACIO, None
+        # Error en caso que el string contenga caracteres fuera del alfabeto
     if not cadena.isalpha():
-        return error_abecedario, None
-
-    # c) Verifica que la cadena no sea string vacío
-    if len(cadena) == 0:
-        return error_vacio, None
-
-    # d) Verifica que la longitud de la cadena no sea mayor a 30 caracteres
+        return ERROR_NO_SOLO_LETRAS, None
+    # Error en caso de que el string tenga más de 30 caracteres
     if len(cadena) > 30:
-        return error_longitud, None
-
-    # e) Verifica que el tipo de dato de bandera sea booleano
+        return ERROR_STRING_LARGO, None
+    # Error en caso de que bandera no sea un booleano
     if not isinstance(bandera, bool):
-        return error_bandera, None
+        return ERROR_NO_BOOLEANO, None
 
-    # Si no se detectan errores, se procede a filtrar las vocales
-
-    vocales = 'aeiouAEIOU'
-
+    # Se definen las letras vocales
+    vocales = "aeiouAEIOU"
+    # Si la bandera es true se filtran las vocales
     if bandera:
-        # Genera un resultado con solo las vocales por lista por comprensión
-        resultado = ''.join([letra for letra in cadena if letra in vocales])
+        resultado = "".join([c for c in cadena if c in vocales])
+    # Si la bandera es false se filtran las consonantes
     else:
-        # Genera resultado con las consonantes por lista por comprensión
-        resultado = ''.join([letra for letra in cadena if letra not in vocales])
-
-    return no_error, resultado
+        resultado = "".join([c for c in cadena if c not in vocales])
+    return CODIGO_EXITO, resultado
 
 
+# Funcion para encontrar maximo y minimo en una lista de numeros
 def encontrar_extremos(lista_numeros):
-
-    # Se definen los códigos de error únicos solicitados del inciso a-e
-
-    no_error = 0
-    error_lista = -600
-    error_numeros = -700
-    error_vacio = -800
-    error_longitud = -900
-
-    # Verificación de errores
-
-    # a) Verifica que el tipo de dato de lista_numeros sea una lista
+    # Error en caso de que el parámetro no sea una lista
     if not isinstance(lista_numeros, list):
-        return error_lista, None, None
-
-    # b) Verifica que todos los elementos de la lista sean int o float
-    if not all(isinstance(num, (int, float)) for num in lista_numeros):
-        return error_numeros, None, None
-
-    # c) Verifica que la lista no esté vacía
+        return ERROR_NO_LISTA, None, None
+    # Error en caso de que la lista esté vacía
     if len(lista_numeros) == 0:
-        return error_vacio, None, None
-
-    # d) Verifica que la longitud de la lista no sea mayor a 15 elementos
+        return ERROR_LISTA_VACIA, None, None
+    # Error en caso de que haya algo distinto a un int o float en la lista
+    if not all(type(x) in (int, float) for x in lista_numeros):
+        return ERROR_ELEMENTOS_NO_NUMERICOS, None, None
+    # Error en caso de que la lista tenga más de 15 elementos
     if len(lista_numeros) > 15:
-        return error_longitud, None, None
-
-    # Resultados de no encontrar errores
-
-    maximo = max(lista_numeros)
+        return ERROR_LISTA_LARGA, None, None
+    # Si no hay errores se encuentra y retorna el minimo y maximo de la lista
     minimo = min(lista_numeros)
-
-    return no_error, maximo, minimo
+    maximo = max(lista_numeros)
+    return CODIGO_EXITO, minimo, maximo
