@@ -1,6 +1,3 @@
-# Error por no usar import flake8
-import math
-
 CODIGOEXITO = 0
 ERROR_NO_STRING = -100
 ERROR_NO_SOLO_LETRAS = -200
@@ -52,7 +49,8 @@ def encontrar_extremos(lista_numeros):
         return ERROR_LISTA_VACIA, None, None
     # Error en caso de que haya algo distinto a un int o float en la lista
     # Errores por multiples statements y exceso de caracteres
-    if not all(isinstance(x, (int, float)) for x in lista_numeros): return ERROR_ELEMENTOS_NO_NUMERICOS, None, None
+    if not all(isinstance(x, (int, float)) for x in lista_numeros):
+        return ERROR_ELEMENTOS_NO_NUMERICOS, None, None
     # Error en caso de que la lista tenga más de 15 elementos
     if len(lista_numeros) > 15:
         return ERROR_LISTA_LARGA, None, None
