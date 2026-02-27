@@ -21,7 +21,7 @@ def filtrar_vocales(cadena, bandera):
     # Error en caso de que el parámetro sea un string vacio
     if cadena == "":
         return ERROR_STRING_VACIO, None
-        # Error en caso que el string contenga caracteres fuera del alfabeto
+    # Error en caso que el string contenga caracteres fuera del alfabeto
     if not cadena.isalpha():
         return ERROR_NO_SOLO_LETRAS, None
     # Error en caso de que el string tenga más de 30 caracteres
